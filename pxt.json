@@ -5,7 +5,9 @@
         "device": "*",
         "Timers": "github:microsoft/arcade-timers#v1.1.0",
         "tilemaps": "github:microsoft/pxt-tilemaps#v1.12.0",
-        "arcade-mini-menu": "github:riknoll/arcade-mini-menu#v0.1.0"
+        "arcade-mini-menu": "github:riknoll/arcade-mini-menu#v0.1.0",
+        "Color Fading": "github:jwunderl/pxt-color#v0.2.3",
+        "corgio": "*"
     },
     "files": [
         "main.blocks",
@@ -19,7 +21,7 @@
         "test.ts"
     ],
     "targetVersions": {
-        "target": "4.0.10",
+        "target": "4.0.14",
         "targetId": "arcade"
     },
     "supportedTargets": [
