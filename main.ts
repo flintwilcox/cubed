@@ -65,6 +65,7 @@ function bossStateMachiene () {
         bossHand1.y += 6
         if (bossHand1.y >= scene.screenHeight()) {
             scene.cameraShake(4, 500)
+            extraEffects.createSpreadEffectOnAnchor(bossHand1, extraEffects.createFullPresetsSpreadEffectData(ExtraEffectPresetColor.Smoke, ExtraEffectPresetShape.Cloud), 1000, 48, 20)
             bossState = "left hand up"
         }
     } else if (bossState == "left hand up") {
@@ -105,6 +106,7 @@ if (bossHand1.y <= H1Y) {
         bossHand2.y += 6
         if (bossHand2.y >= scene.screenHeight()) {
             scene.cameraShake(4, 500)
+            extraEffects.createSpreadEffectOnAnchor(bossHand2, extraEffects.createFullPresetsSpreadEffectData(ExtraEffectPresetColor.Smoke, ExtraEffectPresetShape.Cloud), 1000, 48, 20)
             bossState = "right hand up"
         }
     } else if (bossState == "right hand up") {
@@ -137,6 +139,7 @@ if (bossHand2.y <= H2Y) {
         bossHand1.y += 2
         if (bossHand1.y >= scene.screenHeight() - 20) {
             scene.cameraShake(4, 500)
+            extraEffects.createSpreadEffectOnAnchor(bossHand1, extraEffects.createFullPresetsSpreadEffectData(ExtraEffectPresetColor.Smoke, ExtraEffectPresetShape.Cloud), 2000, 48, 20)
             if (bossHand1.x < mySprite.x) {
                 bossState = "swipeR"
             } else {
@@ -423,18 +426,18 @@ info.onCountdownEnd(function () {
             info.changeScoreBy(1)
             info.startCountdown(timer2)
             if (info.score() == 4) {
-                tiles.setCurrentTilemap(tilemap`level2`)
+                tiles.setCurrentTilemap(tilemap`level7`)
                 spawnSprites()
             }
             if (info.score() == 6) {
-                tiles.setCurrentTilemap(tilemap`level3`)
+                tiles.setCurrentTilemap(tilemap`level2`)
                 spawnSprites()
             }
             if (info.score() == 10) {
-                tiles.setCurrentTilemap(tilemap`level5`)
+                tiles.setCurrentTilemap(tilemap`level3`)
                 spawnSprites()
             }
-            if (info.score() == 15) {
+            if (info.score() == 2) {
                 info.stopCountdown()
                 info.startCountdown(timer2 + 8)
                 tiles.setCurrentTilemap(tilemap`level4`)
@@ -457,7 +460,7 @@ info.onCountdownEnd(function () {
                     if (randint(1, 2) == 1) {
                         tiles.setCurrentTilemap(tilemap`level3`)
                     } else {
-                        tiles.setCurrentTilemap(tilemap`level5`)
+                        tiles.setCurrentTilemap(tilemap`level7`)
                     }
                 }
                 spawnSprites()
@@ -472,7 +475,7 @@ sprites.onOverlap(SpriteKind.Player, SpriteKind.Projectile, function (sprite, ot
     killPlayer(sprite, otherSprite, "projectile")
 })
 function spawnSprites () {
-    for (let value3 of tiles.getTilesByType(assets.tile`myTile0`)) {
+    for (let value3 of tiles.getTilesByType(assets.tile`myTile6`)) {
         mySprite = corgio.create(SpriteKind.Player)
         mySprite.verticalMovement(true)
         mySprite.horizontalMovement(true)
@@ -490,7 +493,7 @@ function spawnSprites () {
         tiles.placeOnTile(mySprite, value3)
         tiles.setTileAt(value3, assets.tile`transparency16`)
     }
-    for (let value4 of tiles.getTilesByType(assets.tile`myTile1`)) {
+    for (let value4 of tiles.getTilesByType(assets.tile`myTile0`)) {
         myEnemy = sprites.create(img`
             4 4 4 4 4 
             4 3 2 2 4 
@@ -504,7 +507,7 @@ function spawnSprites () {
         tiles.placeOnTile(myEnemy, value4)
         tiles.setTileAt(value4, assets.tile`transparency16`)
     }
-    for (let value5 of tiles.getTilesByType(assets.tile`myTile2`)) {
+    for (let value5 of tiles.getTilesByType(assets.tile`myTile1`)) {
         myEnemy2 = sprites.create(img`
             4 4 4 4 4 
             4 5 5 3 4 
@@ -520,7 +523,7 @@ function spawnSprites () {
         tiles.placeOnTile(myEnemy2, value5)
         tiles.setTileAt(value5, assets.tile`transparency16`)
     }
-    for (let value6 of tiles.getTilesByType(assets.tile`myTile3`)) {
+    for (let value6 of tiles.getTilesByType(assets.tile`myTile2`)) {
         myEnemy3 = sprites.create(img`
             4 4 4 
             4 2 4 
@@ -531,7 +534,7 @@ function spawnSprites () {
         tiles.placeOnTile(myEnemy3, value6)
         tiles.setTileAt(value6, assets.tile`transparency16`)
     }
-    for (let value7 of tiles.getTilesByType(assets.tile`myTile4`)) {
+    for (let value7 of tiles.getTilesByType(assets.tile`myTile5`)) {
         bossHead2 = sprites.create(img`
             f......................333333333333...............
             .....................3333333333333333.............
@@ -601,7 +604,7 @@ function spawnSprites () {
         tiles.placeOnTile(bossHead2, value7)
         tiles.setTileAt(value7, assets.tile`transparency16`)
     }
-    for (let value8 of tiles.getTilesByType(assets.tile`myTile5`)) {
+    for (let value8 of tiles.getTilesByType(assets.tile`myTile3`)) {
         bossHand1 = sprites.create(img`
             ....44.......................
             ..444444.....................
@@ -638,7 +641,7 @@ function spawnSprites () {
         tiles.setTileAt(value8, assets.tile`transparency16`)
         bossHand1.setFlag(SpriteFlag.GhostThroughWalls, true)
     }
-    for (let value9 of tiles.getTilesByType(assets.tile`myTile6`)) {
+    for (let value9 of tiles.getTilesByType(assets.tile`myTile4`)) {
         bossHand2 = sprites.create(img`
             .......................44....
             .....................444444..
@@ -1583,10 +1586,10 @@ let bossHand1X = 0
 let fireRate = 0
 let inMenu = 0
 let bossState = ""
-let attack22 = 0
-let attack2 = 0
-let bossHand1: Sprite = null
 let bossHand2: Sprite = null
+let bossHand1: Sprite = null
+let attack2 = 0
+let attack22 = 0
 bossState = "none"
 inMenu = 2
 fireRate = 5000
@@ -1607,6 +1610,11 @@ game.onUpdate(function () {
         }
         for (let value132 of sprites.allOfKind(SpriteKind.bossHead)) {
             bossStateMachiene()
+        }
+        for (let value13 of sprites.allOfKind(SpriteKind.Projectile)) {
+            extraEffects.createSpreadEffectOnAnchor(value13, extraEffects.createSingleColorSpreadEffectData(12, ExtraEffectPresetShape.Spark), 100, 1, 2)
+            extraEffects.createSpreadEffectOnAnchor(value13, extraEffects.createSingleColorSpreadEffectData(4, ExtraEffectPresetShape.Twinkle), 100, 1, 2)
+            extraEffects.createSpreadEffectOnAnchor(value13, extraEffects.createSingleColorSpreadEffectData(2, ExtraEffectPresetShape.Spark), 100, 1, 2)
         }
     } else {
         for (let value1322 of sprites.allOfKind(SpriteKind.MiniMenu)) {
@@ -1629,7 +1637,6 @@ game.onUpdateInterval(fireRate, function () {
                     `, value14, 0 - bulletSpeed, 0)
             }
             projectile.setFlag(SpriteFlag.DestroyOnWall, true)
-            projectile.startEffect(effects.fire, 5000)
         }
     }
 })

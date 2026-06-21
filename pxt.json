@@ -7,7 +7,8 @@
         "tilemaps": "github:microsoft/pxt-tilemaps#v1.12.0",
         "arcade-mini-menu": "github:riknoll/arcade-mini-menu#v0.1.0",
         "Color Fading": "github:jwunderl/pxt-color#v0.2.3",
-        "corgio": "*"
+        "corgio": "*",
+        "Extra Effects": "github:alexszeto/extra-effects#v3.1.0"
     },
     "files": [
         "main.blocks",
